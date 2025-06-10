@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel List</title>
+    <script>
+        async function fetchHotels() {
+            const dateFrom = "2024-01-01";
+            const dateTo = "2024-02-01";
+
+            try {
+                const response = await fetch(`http://localhost:8000/hotels?date_from=${dateFrom}&date_to=${dateTo}`);
+                const hotels = await response.json();
+
+                const hotelList = document.getElementById("hotel-list");
+                hotelList.innerHTML = ''; // Очищаем список перед добавлением
+
+                hotels.forEach(hotel => {
+                    const hotelItem = document.createElement("li");
+                    hotelItem.textContent = `ID: ${hotel.id}, Title: ${hotel.title}, Location: ${hotel.location}`;
+                    hotelList.appendChild(hotelItem);
+                });
+            } catch (error) {
+                console.error('Error fetching hotels:', error);
+            }
+        }
+
+        window.onload = function() {
+            fetchHotels();
+        };
+    </script>
+</head>
+<body>
+    <h1>Hotels List</h1>
+    <ul id="hotel-list">
+        <!-- Список отелей появится здесь -->
+    </ul>
+</body>
+</html>
