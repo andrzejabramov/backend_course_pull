@@ -63,8 +63,8 @@ docker compose build
 ```
 docker run --name booking_db \
     -p 6432:5432 \
-    -e POSTGRES_USER=abcde \
-    -e POSTGRES_PASSWORD=abcde \
+    -e POSTGRES_USER=andrzejvod \
+    -e POSTGRES_PASSWORD=God1980obezyanj! \
     -e POSTGRES_DB=booking \
     --network=myNetwork \
     --volume pg-booking-data:/var/lib/postgresql/data \
@@ -85,7 +85,7 @@ docker run --name booking_cache \
 docker run --name booking_nginx \
     --volume ./nginx.conf:/etc/nginx/nginx.conf \
     --network=myNetwork \
-    --rm -p 7777:80 nginx
+    --rm -p 80:80 nginx
 
 С SSL (https)        
 ```
@@ -94,5 +94,5 @@ docker run --name booking_nginx \
     --volume /etc/letsencrypt:/etc/letsencrypt \
     --volume /var/lib/letsencrypt:/var/lib/letsencrypt \
     --network=myNetwork \
-    --rm -p 80:80 -p 443:443 -d nginx
+    --rm -p 443:443 -d nginx
 ```
